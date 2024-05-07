@@ -1,0 +1,12 @@
+[{
+    "origin" : ["*"],
+    "method": [
+        "PUT",
+        "POST"
+],
+    "responseHeader": [
+        "Content-Type",
+        "x-goog-resumable"
+],
+    "max_age_seconds" : 3600
+}]
