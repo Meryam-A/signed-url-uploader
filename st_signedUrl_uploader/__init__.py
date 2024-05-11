@@ -2,8 +2,9 @@ import os
 import streamlit.components.v1 as components
 import datetime as dt
 import time
+import streamlit as st
 
-_RELEASE = False
+_RELEASE = True
 
 if not _RELEASE:
     _component_func = components.declare_component(
@@ -33,7 +34,7 @@ def signedUrl_uploader(storage_client, credentials, bucket_name, key='1'):
     blob = bucket.blob("signedUrl file")
     signed_url = generate_signed_url(credentials, blob)
     files_data = _component_func(signed_url=signed_url,key=key)
-    while not blob.exists():
+    while not blob.exists() :
         time.sleep(1)
     if files_data:
         new_blob = bucket.rename_blob(blob, files_data['filename'])
@@ -46,7 +47,6 @@ def signedUrl_uploader(storage_client, credentials, bucket_name, key='1'):
 
 if not _RELEASE:
 
-    import streamlit as st
     from google import auth
     from google.cloud import storage
 

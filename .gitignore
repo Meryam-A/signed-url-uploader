@@ -1,3 +1,8 @@
 venv/
 gae.json
 st_signedUrl_uploader/frontend/node_modules/
+st_signedUrl_uploader/frontend/build/
+dist
+st_signedUrl_uploader.egg-info
+build
+.DS_Store
