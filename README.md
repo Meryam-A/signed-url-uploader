@@ -30,7 +30,10 @@ Example CORS configuration file can be found in [CORS.json](https://github.com/M
 
 ### Implementation : 
 - **Service Account Permissions:** Ensure the App Engine or Cloud Run service account has the `roles/iam.serviceAccountTokenCreator` role for generating signed URLs.
-    
+- **Install Cloud Storage library:** 
+```
+pip install st-signedUrl-uploader
+```
 #### Sample Code :
 
 ```python
@@ -68,7 +71,10 @@ Example CORS configuration file can be found in [CORS.json](https://github.com/M
 
 ### Implementation : 
 - Create a service account and give it the role `roles/iam.serviceAccountTokenCreator`
-    
+- **Install Cloud Storage library:** 
+```
+pip install st-signedUrl-uploader
+```
 #### Sample Code :
 
 ```python
