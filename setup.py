@@ -6,7 +6,7 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
-    name="st_signedUrl_uploader",
+    name="st-signedUrl-uploader",
     version="1.0",
     author="Meryam Assermouh",
     author_email="",

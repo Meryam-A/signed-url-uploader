@@ -11,7 +11,7 @@ Considering the schema below, the Signed Url Uploader abstracts away steps 2 and
 
 You can install the latest release using:
 ```
-pip install st_signedUrl_uploader
+pip install st-signedUrl-uploader
 ```
 
 ## Usage 
@@ -34,7 +34,7 @@ Example CORS configuration file can be found in [CORS.json](https://github.com/M
 #### Sample Code :
 
 ```python
-from st_signedUrl_uploader import signedUrl_uploader
+from st-signedUrl-uploader import signedUrl_uploader
 from google import auth
 from google.cloud import storage
 
@@ -72,7 +72,7 @@ Example CORS configuration file can be found in [CORS.json](https://github.com/M
 #### Sample Code :
 
 ```python
-from st_signedUrl_uploader import signedUrl_uploader
+from st-signedUrl-uploader import signedUrl_uploader
 from google import auth
 from google.cloud import storage
 import os
@@ -92,3 +92,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+## Useful links
+
+[GitHub Repository](https://github.com/Meryam-A/signed-url-uploader)
