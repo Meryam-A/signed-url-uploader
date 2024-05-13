@@ -15,22 +15,23 @@ pip install st_signedUrl_uploader
 ```
 
 ## Usage 
-You can use this component as an uploader in your application that's intended for deployment on App Engine or Cloud Run. You can also test the uploader using a service account. Below is a usage example for each case, with the sample code as well as the infrastructure requirements 
+This component serves as an efficient uploader for applications that are deployed on App Engine or Cloud Run, specifically designed to handle large file uploads by utilizing Google Cloud Storage (GCS) and signed URLs. To facilitate ease of integration and testing, the component can be used in two ways: directly in cloud deployments or locally using a service account for development and testing purposes. Below, you will find detailed instructions for both scenarios, including sample code and a list of infrastructure prerequisites necessary to ensure smooth operation and integration of the uploader in your projects.
 
 ### Usage with App Engine or Cloud Run
 
 #### Requirements :
   
-- Create Cloud Storage bucket where you want to upload files
-- Set up CORS configuration for the bucket using this command
+- **Google Cloud Storage Bucket:** Set up a bucket to store uploaded files.
+- **CORS Configuration:** Set your bucket's CORS settings using:
 ```
 gcloud storage buckets update gs://BUCKET_NAME --cors-file=CORS_CONFIG_FILE
 ```
-For the cofiguration file you can use [CORS.json](https://github.com/Meryam-A/signed-url-uploader/blob/main/CORS.json)
+Example CORS configuration file can be found in [CORS.json](https://github.com/Meryam-A/signed-url-uploader/blob/main/CORS.json) or create your own based on [Google Cloud Documentation](https://cloud.google.com/storage/docs/cross-origin)
 
-- Depending on what you are using, grant App Engine's or Cloud Run's default service account the role *roles/iam.serviceAccountTokenCreator*
+### Implementation : 
+- **Service Account Permissions:** Ensure the App Engine or Cloud Run service account has the `roles/iam.serviceAccountTokenCreator` role for generating signed URLs.
     
-#### Code sample :
+#### Sample Code :
 
 ```python
 from st_signedUrl_uploader import signedUrl_uploader
@@ -38,13 +39,14 @@ from google import auth
 from google.cloud import storage
 
 def main():
-  bucket_name = "st-signed-url-bucket" # name of your gcs bucket
-  
+  bucket_name = "your-bucket-name" # Specify your GCS bucket name here
+
+  # Authenticate and create a storage client
   credentials, project = auth.default()
   credentials.refresh(auth.transport.requests.Request()) 
-  
   storage_client = storage.Client()
-  
+
+  # Use the uploader function to handle file uploads
   signedUrl_uploader(storage_client, credentials, bucket_name)
 
 if __name__ == "__main__":
@@ -57,16 +59,17 @@ After deploying your application on App Engine or Cloud run, the default service
 
 #### Requirements :
   
-- Create Cloud Storage bucket where you want to upload files
-- Set up CORS configuration for the bucket using this command
+- **Google Cloud Storage Bucket:** Set up a bucket to store uploaded files.
+- **CORS Configuration:** Set your bucket's CORS settings using:
 ```
 gcloud storage buckets update gs://BUCKET_NAME --cors-file=CORS_CONFIG_FILE
 ```
-For the cofiguration file you can use [CORS.json](https://github.com/Meryam-A/signed-url-uploader/blob/main/CORS.json)
+Example CORS configuration file can be found in [CORS.json](https://github.com/Meryam-A/signed-url-uploader/blob/main/CORS.json) or create your own based on [Google Cloud Documentation](https://cloud.google.com/storage/docs/cross-origin)
 
-- Create a service account and give it the role *roles/iam.serviceAccountTokenCreator*
+### Implementation : 
+- Create a service account and give it the role `roles/iam.serviceAccountTokenCreator`
     
-#### Code sample :
+#### Sample Code :
 
 ```python
 from st_signedUrl_uploader import signedUrl_uploader
@@ -75,15 +78,15 @@ from google.cloud import storage
 import os
 
 def main():
-  bucket_name = "st-signed-url-bucket" # name of your gcs bucket
-  
+  bucket_name = "your-bucket-name"  # Specify your GCS bucket name here
+
+  # Authenticate and create a storage client
   parent_dir = os.path.dirname(os.path.abspath(__file__))
   os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(parent_dir, 'path/to/key_file.json')
   credentials, project = auth.default()
-  
-  
   storage_client = storage.Client()
-  
+
+  # Use the uploader function to handle file uploads
   signedUrl_uploader(storage_client, credentials, bucket_name)
 
 if __name__ == "__main__":
