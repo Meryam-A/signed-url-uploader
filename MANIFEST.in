@@ -1,1 +1,1 @@
-recursive-include st-signedUrl-uploader/frontend/build *
+recursive-include st_signedUrl_uploader/frontend/build *

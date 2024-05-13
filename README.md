@@ -11,7 +11,7 @@ Considering the schema below, the Signed Url Uploader abstracts away steps 2 and
 
 You can install the latest release using:
 ```
-pip install st-signedUrl-uploader
+pip install st_signedUrl_uploader
 ```
 
 ## Usage 
@@ -37,7 +37,7 @@ pip install google-cloud-storage
 #### Sample Code :
 
 ```python
-from st-signedUrl-uploader import signedUrl_uploader
+from st_signedUrl_uploader import signedUrl_uploader
 from google import auth
 from google.cloud import storage
 
@@ -78,7 +78,7 @@ pip install google-cloud-storage
 #### Sample Code :
 
 ```python
-from st-signedUrl-uploader import signedUrl_uploader
+from st_signedUrl_uploader import signedUrl_uploader
 from google import auth
 from google.cloud import storage
 import os
