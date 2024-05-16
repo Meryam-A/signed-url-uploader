@@ -98,6 +98,13 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+You can run the application using the command below and replacing `main.py` by the name of your file.
+
+```
+streamlit run main.py
+```
+
 ## Useful links
 
 [GitHub Repository](https://github.com/Meryam-A/signed-url-uploader)

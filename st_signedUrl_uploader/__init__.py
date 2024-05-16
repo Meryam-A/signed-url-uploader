@@ -34,9 +34,9 @@ def signedUrl_uploader(storage_client, credentials, bucket_name, key='1'):
     blob = bucket.blob("signedUrl file")
     signed_url = generate_signed_url(credentials, blob)
     files_data = _component_func(signed_url=signed_url,key=key)
-    while not blob.exists() :
-        time.sleep(1)
     if files_data:
+        while not blob.exists() :
+            time.sleep(1)
         new_blob = bucket.rename_blob(blob, files_data['filename'])
         new_blob.content_type = files_data['content_type']
         new_blob.patch()        
