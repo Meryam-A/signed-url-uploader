@@ -4,6 +4,7 @@ import {
   StreamlitComponentBase,
   withStreamlitConnection,
 } from "streamlit-component-lib";
+import uploadIcon from './logo.png';
 
 interface FileData {
   filename: string;
@@ -20,20 +21,39 @@ class SignedUrlUploader extends StreamlitComponentBase<State> {
 
   public render = (): ReactNode => {
     const { theme } = this.props;
-    const style: React.CSSProperties = {};
+    const containerStyle: React.CSSProperties = {
+      display: 'flex',
+      alignItems: 'center', 
+      gap: '20px',          
+    };
+
+    const imageStyle: React.CSSProperties = {
+      height: '50px',       
+      width: '50px',        
+    };
+    const style: React.CSSProperties = {
+      border: '1px solid black',  
+      outline: '1px solid black', 
+      backgroundColor: '#002244',   
+      color: 'white',               
+      padding: '10px 15px',         
+      borderRadius: '5px'           
+    };
 
     if (theme) {
-      const borderStyling = `1px solid ${theme.primaryColor}`;
+      const borderStyling = `1px solid black`;
       style.border = borderStyling;
       style.outline = borderStyling;
     }
 
     return (
       <div style={{ padding: "20px" }}>
+        <div style={containerStyle}>
+        <img src={uploadIcon} style={imageStyle} alt="Upload Icon"/>
         <input
           type="file"
           onChange={this.onFileUpload}
-          style={style}
+          style={{...style, backgroundColor: 'transparent', color: 'initial', border: 'bleu'}}
         />
         <button
           style={style}
@@ -41,6 +61,7 @@ class SignedUrlUploader extends StreamlitComponentBase<State> {
         >
           Upload
         </button>
+        </div>
       </div>
     );
   };
