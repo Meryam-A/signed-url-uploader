@@ -67,7 +67,7 @@ After deploying your application on App Engine or Cloud run, the default service
 ```
 gcloud storage buckets update gs://BUCKET_NAME --cors-file=CORS_CONFIG_FILE
 ```
-Example CORS configuration file can be found in [CORS.json](https://github.com/Meryam-A/signed-url-uploader/blob/main/CORS.json) or create your own based on [Google Cloud Documentation](https://cloud.google.com/storage/docs/cross-origin)
+Example CORS configuration file can be found in [CORS.json](https://github.com/Meryam-A/signed-url-uploader/blob/main/assets/CORS.json) or create your own based on [Google Cloud Documentation](https://cloud.google.com/storage/docs/cross-origin)
 
 ### Implementation : 
 - Create a service account and give it the role `roles/iam.serviceAccountTokenCreator`
