@@ -70,7 +70,7 @@ gcloud storage buckets update gs://BUCKET_NAME --cors-file=CORS_CONFIG_FILE
 Example CORS configuration file can be found in [CORS.json](https://github.com/Meryam-A/signed-url-uploader/blob/main/assets/CORS.json) or create your own based on [Google Cloud Documentation](https://cloud.google.com/storage/docs/cross-origin)
 
 ### Implementation : 
-- Create a service account and give it the role `roles/iam.serviceAccountTokenCreator`
+- Create a service account and give it the roles : `roles/editor` and `roles/iam.serviceAccountTokenCreator`
 - **Install Cloud Storage library:** 
 ```
 pip install google-cloud-storage
@@ -89,7 +89,8 @@ def main():
   # Authenticate and create a storage client
   parent_dir = os.path.dirname(os.path.abspath(__file__))
   os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(parent_dir, 'path/to/key_file.json')
-  credentials, project = auth.default()
+  scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  credentials, project= auth.default(scopes=scopes)
   storage_client = storage.Client()
 
   # Use the uploader function to handle file uploads
