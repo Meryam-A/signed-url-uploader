@@ -108,7 +108,12 @@ class SignedUrlUploader extends StreamlitComponentBase<State> {
   };
 
   private onClicked = (): void => {
-    Streamlit.setComponentValue(this.state.filesData);
+    if (this.state.filesData.filename) {
+      Streamlit.setComponentValue(this.state.filesData);
+      this.setState({ filesData: { filename: '', content_type: '' } });
+    } else {
+      alert('Please upload a new file before clicking upload.');
+    }
   };
 }
 
